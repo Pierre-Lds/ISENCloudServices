@@ -28,58 +28,58 @@ html(lang='en')
                 if !isLogged
                     ul.navbar-nav.me-auto.mb-2.mb-lg-0.ml-auto
                         li.nav-item
-                            a.nav-link(href=URL+'login') Login
+                            a.nav-link(href='/login') Login
                 else
                     ul.navbar-nav.me-auto.mb-2.mb-lg-0
                         li.nav-item
-                            a.nav-link(href=URL+'dashboard') Dashboard
+                            a.nav-link(href='/dashboard') Dashboard
                         if isAdmin
                             li.nav-item
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinka', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Ressources
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinka')
-                                    a.dropdown-item(href=URL+'cluster/create') Add a cluster
-                                    a.dropdown-item(href=URL+'cluster/') List of clusters
+                                    a.dropdown-item(href='/cluster/create') Add a cluster
+                                    a.dropdown-item(href='/cluster/') List of clusters
                                     .dropdown-divider
-                                    a.dropdown-item(href=URL+'refArchitectureCPU/create') Add an architecture
-                                    a.dropdown-item(href=URL+'refArchitectureCPU/') List of architectures
+                                    a.dropdown-item(href='/refArchitectureCPU/create') Add an architecture
+                                    a.dropdown-item(href='/refArchitectureCPU/') List of architectures
                                     .dropdown-divider
-                                    a.dropdown-item(href=URL+'ressource/create') Add a ressource
-                                    a.dropdown-item(href=URL+'ressource/') List of ressources
+                                    a.dropdown-item(href='/ressource/create') Add a ressource
+                                    a.dropdown-item(href='/ressource/') List of ressources
                             li.nav-item.dropdown
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkb', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Accounts
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkb')
-                                    a.dropdown-item(href=URL+'user/create') Add an account
-                                    a.dropdown-item(href=URL+'user/') List of accounts
+                                    a.dropdown-item(href='/user/create') Add an account
+                                    a.dropdown-item(href='/user/') List of accounts
                             li.nav-item.dropdown
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkc', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reservations
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkc')
-                                    a.dropdown-item(href=URL+'reservation/create') Add a reservation
-                                    a.dropdown-item(href=URL+'reservation/') List of reservations
+                                    a.dropdown-item(href='/reservation/create') Add a reservation
+                                    a.dropdown-item(href='/reservation/') List of reservations
                                     .dropdown-divider
-                                    a.dropdown-item(href=URL+'reservation/me') My reservations
-                                    a.dropdown-item(href=URL+'reservation/infocenter') Infocenter
-                                    a.dropdown-item(href=URL+'reservation/planning') Reservation's planning
+                                    a.dropdown-item(href='/reservation/me') My reservations
+                                    a.dropdown-item(href='/reservation/infocenter') Infocenter
+                                    a.dropdown-item(href='/reservation/planning') Reservation's planning
                         else
                             li.nav-item
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinka', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Ressources
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinka')
-                                    a.dropdown-item(href=URL + 'cluster/') List of clusters
-                                    a.dropdown-item(href=URL + 'refArchitectureCPU/') List of architectures
-                                    a.dropdown-item(href=URL + 'ressource/') List of ressources
+                                    a.dropdown-item(href='/cluster/') List of clusters
+                                    a.dropdown-item(href='/refArchitectureCPU/') List of architectures
+                                    a.dropdown-item(href='/ressource/') List of ressources
                             li.nav-item.dropdown
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkb', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Users
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkb')
-                                    a.dropdown-item(href=URL + 'user/') List of users
+                                    a.dropdown-item(href='/user/') List of users
                             li.nav-item.dropdown
                                 a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkc', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reservations
                                 .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkc')
-                                    a.dropdown-item(href=URL + 'reservation/create') Reserve a ressource
-                                    a.dropdown-item(href=URL + 'reservation/me') My reservations
+                                    a.dropdown-item(href='/reservation/create') Reserve a ressource
+                                    a.dropdown-item(href='/reservation/me') My reservations
                                     .dropdown-divider
-                                    a.dropdown-item(href=URL + 'reservation/planning') Reservation's planning
+                                    a.dropdown-item(href='/reservation/planning') Reservation's planning
                     ul.navbar-nav.ml-auto
                         li.nav-item
-                            a.nav-link(href=URL+'user/me') My account
+                            a.nav-link(href='/user/me') My account
                         li.nav-item
                             form.form-inline
                                 input(type='hidden' name='email')
