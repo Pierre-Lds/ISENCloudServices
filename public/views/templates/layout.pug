@@ -10,7 +10,6 @@ html(lang='en')
         link(rel='icon', href='/img/logo.png')
     body
         // Variables
-        - var URL = "//localhost:8000/"
         if session.user
             - var isLogged = true
             - var isAdmin = (session.user.role === 'admin')
@@ -24,7 +23,7 @@ html(lang='en')
             .collapse.navbar-collapse#navbarNavDropdown
                 ul.navbar-nav
                     li.nav-item.active
-                        a.nav-link(href=URL) ISEN Cloud Services
+                        a.nav-link(href="/") ISEN Cloud Services
                 if !isLogged
                     ul.navbar-nav.me-auto.mb-2.mb-lg-0.ml-auto
                         li.nav-item
