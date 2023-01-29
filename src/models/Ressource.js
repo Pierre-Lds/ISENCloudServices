@@ -1,6 +1,6 @@
 // Required & Constants
 const {MongoClient, ObjectId, ServerApiVersion} = require("mongodb");
-const Reservation = require("./Reservation");
+const Reservation = require("./Reservation.js");
 require('dotenv').config();
 const uri = process.env.URI
 const dbName = process.env.DB_NAME;

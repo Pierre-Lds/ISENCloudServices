@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 const Ressource = require("../models/Ressource.js");
 const bp = require('body-parser')
-const Cluster = require("../models/cluster");
+const Cluster = require("../models/Cluster.js");
 const refArchitectureCPU = require("../models/refArchitectureCPU.js");
-const Reservation = require("../models/Reservation");
+const Reservation = require("../models/Reservation.js");
 
 // Authorization
 

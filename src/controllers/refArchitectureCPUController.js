@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const RefArchitectureCPUController = require("../models/RefArchitectureCPU.js");
 const bp = require('body-parser')
-const Ressource = require("../models/Ressource");
+const Ressource = require("../models/Ressource.js");
 
 // Authorization
 

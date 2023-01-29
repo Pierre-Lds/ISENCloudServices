@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User.js");
 const bp = require('body-parser');
 const bcrypt = require('bcrypt');
-const Reservation = require("../models/Reservation");
+const Reservation = require("../models/Reservation.js");
 
 // Authorization
 

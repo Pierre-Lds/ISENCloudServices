@@ -4,7 +4,7 @@ const router = express.Router();
 const Reservation = require("../models/Reservation.js");
 const bp = require('body-parser')
 const User = require("../models/User");
-const Ressource = require("../models/Ressource");
+const Ressource = require("../models/Ressource.js");
 const flash = require('connect-flash');
 const moment = require('moment');
 
