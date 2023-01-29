@@ -98,6 +98,20 @@ router.get('/me', async (req, res) => {
     );
 });
 
+router.get('/search/', async (req, res) => {
+    console.log(">>", req.query.q);
+    let users = await User.getByUsername(req.query.q);
+    console.log(users);
+    res.render(
+        "users/users.pug",
+        {
+            title: "List of users",
+            session: req.session,
+            users: users,
+        }
+    );
+});
+
 // UPDATE
 router.get("/:idUser/update", async (req, res) => {
     let user = await User.getById(req.params.idUser);

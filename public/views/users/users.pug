@@ -8,6 +8,9 @@ block content
         h1.my-4 #{title}
         if isAdmin
             a.btn.btn-info.my-3(href='/user/create') Add New user
+    form.form-inline.my-2(action='/user/search/', method='GET')
+        input.form-control.mx-3(type='text' name='q' placeholder='Search by username')
+        input.btn.btn-info(type='submit' value='Search')
     table.table.table-striped.table-hover
         thead.thead-dark
             tr

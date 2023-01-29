@@ -109,6 +109,22 @@ const User = {
         // Results
         await client.close();
         return users;
+    },
+    getByUsername : async function(username) {
+        // Start
+        await client.connect();
+        // Connections
+        const table = client.db(dbName).collection("user");
+        // Query
+        const users = await table.find({
+            $or: [
+                { name: { $regex: username, $options: "i" } },
+                { last_name: { $regex: username, $options: "i" } }
+            ]
+        }).toArray();
+        // Results
+        await client.close();
+        return users;
     }
 }
 
