@@ -1,0 +1,28 @@
+extends ../templates/layout
+
+block content
+    if flash
+        each alert, type in flash
+            div.alert.alert-danger= alert
+    .d-flex.justify-content-between.align-items-center
+        h1.my-4 #{title}
+        if isAdmin
+            a.btn.btn-info.my-3(href='/refArchitectureCPU/create') Add New CPU Architecture
+    table.table.table-striped.table-hover
+        thead.thead-dark
+            tr
+                th ID
+                th Name
+                th Actions
+        tbody
+            each refArchitectureCPU in refArchitecturesCPU
+                tr
+                    td #{refArchitectureCPU._id}
+                    td #{refArchitectureCPU.name}
+                    td
+                        form.form-inline
+                            a.btn.btn-info.mx-1(href='/refArchitectureCPU/' + refArchitectureCPU._id+'/read') View
+                            input(type='hidden' name='_id' value=refArchitectureCPU._id)
+                            if isAdmin
+                                a.btn.btn-secondary.mx-1(href='/refArchitectureCPU/' + refArchitectureCPU._id + '/update') Edit
+                                input.mx-1.btn.btn-secondary(type='submit' value='Delete' formaction='/refArchitectureCPU/' + refArchitectureCPU._id + '/delete' formmethod='post')

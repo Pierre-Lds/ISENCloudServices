@@ -1,0 +1,34 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        p
+            b ID :
+            |  #{cluster._id}
+        p
+            b Name :
+            |  #{cluster.name}
+        p
+            b Nb. Ressources :
+            |  #{ressources.length}
+        .d-flex.align-items-center
+            a.btn.btn-secondary.mx-1(href='/cluster/') Back to List
+            a.btn.btn-info.mx-1(href='/cluster/'+cluster._id+'/update') Edit
+            form.mx-1
+                input(type='hidden' name='_id' value=cluster._id)
+                input.btn.btn-danger(type='submit' value='Delete' formaction='/cluster/' + cluster._id + '/delete' formmethod='post')
+    if ressources.length !== 0
+        div.container.my-3
+            h2 Ressources associées :
+            table.table.table-striped.table-hover
+                thead.thead-dark
+                    tr
+                        th ID
+                        th Name
+                tbody
+                    for ressource in ressources
+                        tr
+                            td #{ressource._id}
+                            td
+                                a(href="/../ressource/"+ressource._id+'/read') #{ressource.name}

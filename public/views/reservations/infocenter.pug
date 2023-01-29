@@ -1,0 +1,56 @@
+extends ../templates/layout
+
+block content
+    h1.my-3 #{title}
+
+    div.row
+        div.col-6
+            table.table.table-striped.table-hover.table-bordered
+                thead.thead-dark
+                    tr
+                        th Most used ressources
+                            span.badge.badge-success.ml-1 📉
+                tbody
+                    if highestCountRessourcesObjects
+                        for highestCountRessourcesObject in highestCountRessourcesObjects
+                            tr
+                                td
+                                    a(href="/ressource/" + highestCountRessourcesObject._id + '/read') #{highestCountRessourcesObject.name} (#{highestCountRessourcesObject.count})
+        div.col-6
+            table.table.table-striped.table-hover.table-bordered
+                thead.thead-dark
+                    tr
+                        th Less used ressources
+                            span.badge.badge-danger.ml-1 📈
+                tbody
+                    if lowestCountRessourcesObjects
+                        for lowestCountRessourcesObject in lowestCountRessourcesObjects
+                            tr
+                                td
+                                    a(href="/ressource/" + lowestCountRessourcesObject._id + '/read') #{lowestCountRessourcesObject.name} (#{lowestCountRessourcesObject.count})
+
+    div.row
+        div.col-6
+            table.table.table-striped.table-hover.table-bordered
+                thead.thead-dark
+                    tr
+                        th Best consumer
+                            span.badge.badge-success.ml-1 📉
+                tbody
+                    if highestCountConsumersObjects
+                        for highestCountConsumersObject in highestCountConsumersObjects
+                            tr
+                                td
+                                    a(href="/user/" + highestCountConsumersObject._id + '/read') #{highestCountConsumersObject.name} #{highestCountConsumersObject.last_name} (#{highestCountConsumersObject.count})
+        div.col-6
+            table.table.table-striped.table-hover.table-bordered
+                thead.thead-dark
+                    tr
+                        th Worst consumer
+                            span.badge.badge-danger.ml-1 📈
+                tbody
+                    if lowestCountConsumersObjects
+                        for lowestCountConsumersObject in lowestCountConsumersObjects
+                            tr
+                                td
+                                    a(href="/user/" + lowestCountConsumersObject._id + '/read') #{lowestCountConsumersObject.name} #{lowestCountConsumersObject.last_name} (#{lowestCountConsumersObject.count})

@@ -1,0 +1,28 @@
+extends ../templates/layout
+
+block content
+    if flash
+        each alert, type in flash
+            div.alert.alert-danger= alert
+    .d-flex.justify-content-between.align-items-center
+        h1.my-4 #{title}
+        if isAdmin
+            a.btn.btn-info.my-3(href='/cluster/create') Add New Cluster
+    table.table.table-striped.table-hover
+        thead.thead-dark
+            tr
+                th ID
+                th Name
+                th Actions
+        tbody
+            each cluster in clusters
+                tr
+                    td #{cluster._id}
+                    td #{cluster.name}
+                    td
+                        form.form-inline
+                            a.btn.btn-info.mx-1(href='/cluster/' + cluster._id+'/read') View
+                            input(type='hidden' name='_id' value=cluster._id)
+                            if isAdmin
+                                a.btn.btn-secondary.mx-1(href='/cluster/' + cluster._id + '/update') Edit
+                                input.mx-1.btn.btn-secondary(type='submit' value='Delete' formaction='/cluster/' + cluster._id + '/delete' formmethod='post')

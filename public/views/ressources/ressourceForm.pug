@@ -1,0 +1,36 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        form(action='/ressource/'+(ressource === undefined ? 'create' : ressource._id+'/update') method='post')
+            input(type='hidden' name='_id' value=(ressource === undefined ? '' : ressource._id))
+            .form-group
+                label(for='name') Name:
+                input#name.form-control(type='text' name='name' value=(ressource === undefined ? '' : ressource.name) required)
+            .form-group
+                label(for='nbThread') Nb. Threads:
+                select#nbThread.form-control(name='nbThread' required)
+                    option(selected=(ressource === undefined ? '' : (ressource.nbThread === '2' ? 'selected' : '')) value='2') 2
+                    option(selected=(ressource === undefined ? '' : (ressource.nbThread === '4' ? 'selected' : '')) value='4') 4
+                    option(selected=(ressource === undefined ? '' : (ressource.nbThread === '6' ? 'selected' : '')) value='6') 6
+                    option(selected=(ressource === undefined ? '' : (ressource.nbThread === '8' ? 'selected' : '')) value='8') 8
+            .form-group
+                label(for='RAM') RAM :
+                select#RAM.form-control(name='RAM' required)
+                    option(selected=(ressource === undefined ? '' : (ressource.RAM === '4' ? 'selected' : '')) value='4') 4
+                    option(selected=(ressource === undefined ? '' : (ressource.RAM === '8' ? 'selected' : '')) value='8') 8
+                    option(selected=(ressource === undefined ? '' : (ressource.RAM === '16' ? 'selected' : '')) value='16') 16
+                    option(selected=(ressource === undefined ? '' : (ressource.RAM === '32' ? 'selected' : '')) value='32') 32
+            .form-group
+                label(for='rrefArchitectureCPU') Architecture CPU :
+                select#rrefArchitectureCPU.form-control(name='rrefArchitectureCPU' required)
+                    each refArchitectureCPU in refArchitecturesCPU
+                        option(selected=(ressource === undefined ? '' : (ressource.refArchitectureCPU._id === refArchitectureCPU._id ? 'selected' : '')) value=refArchitectureCPU._id)= refArchitectureCPU.name
+            .form-group
+                label(for='refCluster') Cluster:
+                select#refCluster.form-control(name='refCluster' required)
+                    each cluster in clusters
+                        option(selected=(ressource === undefined ? '' : (ressource.refCluster._id === cluster._id ? 'selected' : '')) value=cluster._id)= cluster.name
+            input.btn.btn-info(type='submit' value=action)
+            a.btn.btn-secondary.mx-1(href='/ressource/') Return

@@ -1,0 +1,93 @@
+doctype html
+html(lang='en')
+    head
+        title= "ISEN Cloud Services | "+title
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css')
+        link(rel='stylesheet' href='/style/custom.css')
+        link(rel='icon', href='/img/logo.png')
+    body
+        // Variables
+        - var URL = "//localhost:8000/"
+        if session.user
+            - var isLogged = true
+            - var isAdmin = (session.user.role === 'admin')
+        else
+            - var isLogged = false
+
+        // Navbar
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown', aria-controls='navbarNavDropdown', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            .collapse.navbar-collapse#navbarNavDropdown
+                ul.navbar-nav
+                    li.nav-item.active
+                        a.nav-link(href=URL) ISEN Cloud Services
+                if !isLogged
+                    ul.navbar-nav.me-auto.mb-2.mb-lg-0.ml-auto
+                        li.nav-item
+                            a.nav-link(href=URL+'login') Login
+                else
+                    ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                        li.nav-item
+                            a.nav-link(href=URL+'dashboard') Dashboard
+                        if isAdmin
+                            li.nav-item
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinka', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Ressources
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinka')
+                                    a.dropdown-item(href=URL+'cluster/create') Add a cluster
+                                    a.dropdown-item(href=URL+'cluster/') List of clusters
+                                    .dropdown-divider
+                                    a.dropdown-item(href=URL+'refArchitectureCPU/create') Add an architecture
+                                    a.dropdown-item(href=URL+'refArchitectureCPU/') List of architectures
+                                    .dropdown-divider
+                                    a.dropdown-item(href=URL+'ressource/create') Add a ressource
+                                    a.dropdown-item(href=URL+'ressource/') List of ressources
+                            li.nav-item.dropdown
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkb', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Accounts
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkb')
+                                    a.dropdown-item(href=URL+'user/create') Add an account
+                                    a.dropdown-item(href=URL+'user/') List of accounts
+                            li.nav-item.dropdown
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkc', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reservations
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkc')
+                                    a.dropdown-item(href=URL+'reservation/create') Add a reservation
+                                    a.dropdown-item(href=URL+'reservation/') List of reservations
+                                    .dropdown-divider
+                                    a.dropdown-item(href=URL+'reservation/me') My reservations
+                                    a.dropdown-item(href=URL+'reservation/infocenter') Infocenter
+                                    a.dropdown-item(href=URL+'reservation/planning') Reservation's planning
+                        else
+                            li.nav-item
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinka', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Ressources
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinka')
+                                    a.dropdown-item(href=URL + 'cluster/') List of clusters
+                                    a.dropdown-item(href=URL + 'refArchitectureCPU/') List of architectures
+                                    a.dropdown-item(href=URL + 'ressource/') List of ressources
+                            li.nav-item.dropdown
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkb', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Users
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkb')
+                                    a.dropdown-item(href=URL + 'user/') List of users
+                            li.nav-item.dropdown
+                                a.nav-link.dropdown-toggle(href='#', id='navbarDropdownMenuLinkc', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reservations
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLinkc')
+                                    a.dropdown-item(href=URL + 'reservation/create') Reserve a ressource
+                                    a.dropdown-item(href=URL + 'reservation/me') My reservations
+                                    .dropdown-divider
+                                    a.dropdown-item(href=URL + 'reservation/planning') Reservation's planning
+                    ul.navbar-nav.ml-auto
+                        li.nav-item
+                            a.nav-link(href=URL+'user/me') My account
+                        li.nav-item
+                            form.form-inline
+                                input(type='hidden' name='email')
+                                button.btn.btn-outline-danger(type='submit' formaction='/logout' formmethod='post') Logout
+        // Content
+        div.container-fluid
+            block content
+        // Scripts
+        script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+        script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous")

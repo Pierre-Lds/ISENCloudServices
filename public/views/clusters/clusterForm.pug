@@ -1,0 +1,12 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        form(action='/cluster/'+(cluster === undefined ? 'create' : cluster._id+'/update') method='post')
+            input(type='hidden' name='_id' value=(cluster === undefined ? '' : cluster._id))
+            .form-group
+                label(for='name') Name:
+                input#name.form-control(type='text' name='name' value=(cluster === undefined ? '' : cluster.name) required)
+            input.btn.btn-info(type='submit' value=action)
+            a.btn.btn-secondary.mx-1(href='/cluster/') Return

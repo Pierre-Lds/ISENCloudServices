@@ -1,0 +1,14 @@
+extends templates/layout
+
+block content
+    div.container.my-3.py-3
+        .d-flex.align-items-center.justify-content-center
+            .text-center
+                h1.display-1.fw-bold 401
+                p.fs-3
+                    |
+                    span.text-info Error,
+                    |  Unauthorized.
+                p.lead
+                    | Please login on an account with sufficient permissions.
+                a.btn.btn-info(href=URL+'login/') Login

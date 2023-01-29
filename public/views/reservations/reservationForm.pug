@@ -1,0 +1,25 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        form(action='/reservation/'+(reservation === undefined ? 'create' : reservation._id+'/update') method='post')
+            input(type='hidden' name='_id' value=(reservation === undefined ? '' : reservation._id))
+            .form-group
+                label(for='refUser') User :
+                select#refUser.form-control(name='refUser' required)
+                    each user in users
+                        option(selected=(reservation === undefined ? '' : (reservation.refUser._id === user._id ? 'selected' : '')) value=user._id)= (user.name+" "+user.last_name)
+            .form-group
+                label(for='refRessource') Cluster:
+                select#refRessource.form-control(name='refRessource' required)
+                    each ressource in ressources
+                        option(selected=(reservation === undefined ? '' : (reservation.refRessource._id === ressource._id ? 'selected' : '')) value=ressource._id)= (ressource.name+" ("+ressource.refCluster.name+")")
+            .form-group
+                label(for='dateStart') Date Start:
+                input#dateStart.form-control(type='datetime-local' name='dateStart' value=(reservation === undefined ? '' : reservation.dateStart) required)
+            .form-group
+                label(for='dateEnd') Date End:
+                input#dateEnd.form-control(type='datetime-local' name='dateEnd' value=(reservation === undefined ? '' : reservation.dateEnd) required)
+            input.btn.btn-info(type='submit' value=action)
+            a.btn.btn-secondary.mx-1(href='/reservation/') Return

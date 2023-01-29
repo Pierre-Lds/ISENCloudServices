@@ -1,0 +1,34 @@
+extends ../templates/layout
+
+block content
+    if flash
+        each alert, type in flash
+            div.alert.alert-danger= alert
+    .d-flex.justify-content-between.align-items-center
+        h1.my-4 #{title}
+        a.btn.btn-info.my-3(href='/reservation/create') Add New reservation
+    table.table.table-striped.table-hover
+        thead.thead-dark
+            tr
+                th ID
+                th Ressource
+                th User
+                th Start Date
+                th End Date
+                th Actions
+        tbody
+            each reservation in reservations
+                tr
+                    td #{reservation._id}
+                    td
+                        a(href="/../ressource/"+reservation.refRessource._id+'/read') #{reservation.refRessource.name}
+                    td
+                        a(href="/../user/"+reservation.refUser._id+'/read') #{reservation.refUser.name}
+                    td #{reservation.dateStart}
+                    td #{reservation.dateEnd}
+                    td
+                        form.form-inline
+                            a.btn.btn-info.mx-1(href='/reservation/' + reservation._id+'/read') View
+                            a.btn.btn-secondary.mx-1(href='/reservation/' + reservation._id + '/update') Edit
+                            input(type='hidden' name='_id' value=reservation._id)
+                            input.mx-1.btn.btn-secondary(type='submit' value='Delete' formaction='/reservation/' + reservation._id + '/delete' formmethod='post')

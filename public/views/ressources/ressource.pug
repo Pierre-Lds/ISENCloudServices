@@ -1,0 +1,51 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        p
+            b ID :
+            |  #{ressource._id}
+        p
+            b Name :
+            |  #{ressource.name}
+        p
+            b Nb. Threads :
+            |  #{ressource.nbThread}
+        p
+            b RAM :
+            |  #{ressource.RAM}
+        p
+            b Architecture CPU :
+                a(href="/../refArchitectureCPU/"+ressource.refArchitectureCPU._id+'/read')  #{ressource.refArchitectureCPU.name}
+        p
+            b Cluster :
+                a(href="/../cluster/"+ressource.refCluster._id+'/read')  #{ressource.refCluster.name}
+        p
+            b Nb. Réservations :
+            |  #{reservations.length}
+        .d-flex.align-items-center
+            a.btn.btn-secondary.mx-1(href='/ressource/') Back to List
+            a.btn.btn-info.mx-1(href='/ressource/'+ressource._id+'/update') Edit
+            form.mx-1
+                input(type='hidden' name='_id' value=ressource._id)
+                input.btn.btn-danger(type='submit' value='Delete' formaction='/ressource/' + ressource._id + '/delete' formmethod='post')
+    if reservations.length !== 0
+        div.container.my-3
+            h2 Réservations associées :
+            table.table.table-striped.table-hover
+                thead.thead-dark
+                    tr
+                        th ID
+                        th User
+                        th Start date
+                        th End date
+                tbody
+                    for reservation in reservations
+                        tr
+                            td
+                                a(href="/../reservation/" + reservation._id+'/read') #{reservation._id}
+                            td
+                                a(href="/../user/" + reservation.refUser._id+'/read') #{reservation.refUser.name}
+                            td #{reservation.dateStart}
+                            td #{reservation.dateEnd}

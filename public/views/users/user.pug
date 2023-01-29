@@ -1,0 +1,48 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        p
+            b ID :
+            |  #{user._id}
+        p
+            b Name :
+            |  #{user.name}
+        p
+            b Last Name :
+            |  #{user.last_name}
+        p
+            b Email :
+            |  #{user.email}
+        p
+            b Role :
+            |  #{user.role}
+        p
+            b Nb. Réservations :
+            |  #{reservations.length}
+        .d-flex.align-items-center
+            a.btn.btn-secondary.mx-1(href='/user/') Back to List
+            a.btn.btn-info.mx-1(href='/user/'+user._id+'/update') Edit
+            form.mx-1
+                input(type='hidden' name='_id' value=user._id)
+                input.btn.btn-danger(type='submit' value='Delete' formaction='/user/' + user._id + '/delete' formmethod='post')
+    if reservations.length !== 0
+        div.container.my-3
+            h2 Réservations associées :
+            table.table.table-striped.table-hover
+                thead.thead-dark
+                    tr
+                        th ID
+                        th Ressource
+                        th Start date
+                            th End date
+                tbody
+                    for reservation in reservations
+                        tr
+                            td
+                                a(href="/../reservation/" + reservation._id+'/read') #{reservation._id}
+                            td
+                                a(href="/../ressource/" + reservation.refRessource._id+'/read') #{reservation.refRessource.name}
+                            td #{reservation.dateStart}
+                            td #{reservation.dateEnd}

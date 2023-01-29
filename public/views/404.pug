@@ -1,0 +1,14 @@
+extends templates/layout
+
+block content
+    div.container.my-3.py-3
+        .d-flex.align-items-center.justify-content-center
+            .text-center
+                h1.display-1.fw-bold 404
+                p.fs-3
+                    |
+                    span.text-info Error,
+                    |  Page not found.
+                p.lead
+                    | The page you’re looking for doesn’t exist.
+                a.btn.btn-info(href=URL) Go back to the homepage

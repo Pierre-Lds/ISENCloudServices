@@ -1,0 +1,34 @@
+extends ../templates/layout
+
+block content
+    if flash
+        each alert, type in flash
+            div.alert.alert-danger= alert
+    .d-flex.justify-content-between.align-items-center
+        h1.my-4 #{title}
+        if isAdmin
+            a.btn.btn-info.my-3(href='/user/create') Add New user
+    table.table.table-striped.table-hover
+        thead.thead-dark
+            tr
+                th ID
+                th First Name
+                th Last Name
+                th Email
+                th Role
+                th Actions
+        tbody
+            each user in users
+                tr
+                    td #{user._id}
+                    td #{user.name}
+                    td #{user.last_name}
+                    td #{user.email}
+                    td #{user.role}
+                    td
+                        form.form-inline
+                            a.btn.btn-info.mx-1(href='/user/' + user._id+'/read') View
+                            input(type='hidden' name='_id' value=user._id)
+                            if isAdmin
+                                a.btn.btn-secondary.mx-1(href='/user/' + user._id + '/update') Edit
+                                input.mx-1.btn.btn-secondary(type='submit' value='Delete' formaction='/user/' + user._id + '/delete' formmethod='post')

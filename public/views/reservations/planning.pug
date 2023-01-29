@@ -1,0 +1,35 @@
+extends ../templates/layout
+
+block content
+    h1.my-3 #{title}
+    - let date = moment(dateD).startOf('week');
+    table.table.table-striped.table-hover
+        thead.thead-dark
+            tr
+                th(scope='col') Ressource
+                th(scope='col') Monday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Tuesday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Wednesday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Thursday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Friday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Saturday #{date.add(1, 'days').format('DD/MM')}
+                th(scope='col') Sunday #{date.add(1, 'days').format('DD/MM')}
+        tbody
+            each ressource in ressources
+                - date = moment(dateD).startOf('week');
+                tr
+                    td= ressource.name
+                    - for (let i = 0; i < 7; i++)
+                        if (ressource.reservations[i])
+                            td
+                                for resa in ressource.reservations[i]
+                                    a.text-dark(href='/reservation/'+resa._id+'/read')
+                                        span.badge(style=`background-color: #${resa.refUser._id.toString().substring(18,24)}`) #{resa.refUser.name} #{resa.refUser.last_name}
+                                        br
+                        else
+                            td
+    - date = moment(dateD).startOf('week');
+    .btn-group(role='group', aria-label='Basic outlined example')
+        a(href='/reservation/planning/'+(date.add(-7, 'days').format('YYYY-MM-DD'))).btn.btn-outline-info Previous
+        a(href='/reservation/planning/').btn.btn-outline-info Today
+        a(href='/reservation/planning/'+(date.add(14, 'days').format('YYYY-MM-DD'))).btn.btn-outline-info Next

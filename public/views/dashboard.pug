@@ -1,0 +1,82 @@
+extends templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        h4 Welcome back #{user.name} #{user.last_name} !
+        if user.role === 'admin'
+            div.align-items-center.pb-3.my-4.border-bottom
+                h2.display-4.fw-normal Explore your actions
+                p.fs-5.text-muted The administration panel is here to help you manage your ressources and users.
+                .row.row-cols-1.row-cols-md-3.mb-3.text-center
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-header.py-3
+                                h4.my-0.fw-normal Manage accounts
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-person-circle
+                                ul.list-unstyled.mt-3.mb-4
+                                    li Create accounts
+                                    li Update accounts
+                                    li Delete accounts
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../user/create') Create an account
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../user/') Manage accounts
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-header.py-3
+                                h4.my-0.fw-normal Manage ressources
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-gear-wide-connected
+                                ul.list-unstyled.mt-3.mb-4
+                                    li Create, Read, Update and Delete
+                                    li Link ressources to a cluster
+                                    li Link CPU architecture to a ressource
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../cluster/') Manage clusters
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../refArchitectureCPU/') Manage CPU architectures
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../ressource/') Manage ressources
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-header.py-3.text-bg-primary
+                                h4.my-0.fw-normal Manage reservations
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-bookmark-plus-fill
+                                ul.list-unstyled.mt-3.mb-4
+                                    li Create, Read, Update and Delete
+                                    li Link reservations to a user
+                                    li Link reservations to a ressource
+                                    li Check reservations on a timeline
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../reservation/') Manage reservations
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../reservation/planning') See reservations on a timeline
+        else
+            div.align-items-center.pb-3.my-4.border-bottom
+                h2.display-4.fw-normal Explore your actions
+                p.fs-5.text-muted This user panel is here to help you to navigate in the website.
+                .row.row-cols-1.row-cols-md-3.mb-3.text-center
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-person-circle
+                                p Meet other users.
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../user/') See all users
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-gear-wide-connected
+                                p Check available ressources, clusters and CPU architectures.
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../cluster/') See all clusters
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../refArchitectureCPU/') See all CPU architectures
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../ressource/') See all ressources
+                    .col
+                        .card.mb-4.rounded-3.shadow-sm
+                            .card-body
+                                h1.card-title.pricing-card-title
+                                    i.bi.bi-bookmark-plus-fill
+                                p Book ressources.
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../reservation/create') Book a ressource
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../reservation/me') See your reservations
+                                a.w-100.btn.btn-lg.btn-outline-info.my-1(href='../reservation/planning') See reservations on a timeline

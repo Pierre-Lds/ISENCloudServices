@@ -1,0 +1,26 @@
+extends ../templates/layout
+
+block content
+    div.container.my-3
+        h1 #{title}
+        form(action='/user/'+(user === undefined ? 'create' : user._id+'/update') method='post')
+            input(type='hidden' name='_id' value=(user === undefined ? '' : user._id))
+            .form-group
+                label(for='name') First Name:
+                input#name.form-control(type='text' name='name' value=(user === undefined ? '' : user.name) required)
+            .form-group
+                label(for='last_name') Last Name:
+                input#last_name.form-control(type='text' name='last_name' value=(user === undefined ? '' : user.last_name) required)
+            .form-group
+                label(for='email') Email:
+                input#email.form-control(type='email' name='email' value=(user === undefined ? '' : user.email) required)
+            .form-group
+                label(for='role') Role:
+                select#role.form-control(name='role' required)
+                    option(selected=(user === undefined ? '' : (user.role === 'admin' ? 'selected' : '')) value='admin') Admin
+                    option(selected=(user === undefined ? '' : (user.role === 'user' ? 'selected' : '')) value='user') User
+            .form-group
+                label(for='password') Password:
+                input#password.form-control(type='password' name='password' value=(user === undefined ? '' : user.password) required)
+            input.btn.btn-info(type='submit' value=action)
+            a.btn.btn-secondary.mx-1(href='/user/') Return

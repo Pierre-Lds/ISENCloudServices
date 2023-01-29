@@ -1,0 +1,18 @@
+extends templates/layout
+
+block content
+    div.row
+        div.col-md-6.offset-md-3
+            if flash
+                each alert, type in flash
+                    div.alert.alert-danger= alert
+            h1 Login
+            form.form-horizontal(method='post', action='/login')
+                div.form-group
+                    label(for='mail') Mail
+                    input#mail.form-control(type='mail', name='mail', required='true')
+                div.form-group
+                    label(for='password') Password
+                    input#password.form-control(type='password', name='password', required='true')
+                div.form-group
+                    button.btn.btn-primary(type='submit') Login
